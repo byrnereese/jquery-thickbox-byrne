@@ -211,7 +211,7 @@
 	  
 	  $("#TB_closeWindowButton").click(tb_remove);
 	  
-	  if(url.indexOf('TB_inline') != -1){	
+	  if(settings.inlineId != ''){	
 	    $("#TB_ajaxContent").append($('#' + settings.inlineId).children());
 	    $("#TB_window").unload(function () {
 		$('#' + settings.inlineId).append( $("#TB_ajaxContent").children() ); // move elements back when you're finished
