@@ -184,7 +184,7 @@
 	  ajaxContentW = TB_WIDTH - 30;
 	  ajaxContentH = TB_HEIGHT - 45;
 	  
-	  if(url.indexOf('TB_iframe') != -1){// either iframe or ajax window		
+	  if(settings.iframe){// either iframe or ajax window		
 	    urlNoQuery = url.split('TB_');
 	    $("#TB_iframeContent").remove();
 	    if(!settings.modal){//iframe no modal
@@ -211,7 +211,7 @@
 	  
 	  $("#TB_closeWindowButton").click(tb_remove);
 	  
-	  if(settings.inlineId != ''){	
+	  if(settings.inlineId){	
 	    $("#TB_ajaxContent").append($('#' + settings.inlineId).children());
 	    $("#TB_window").unload(function () {
 		$('#' + settings.inlineId).append( $("#TB_ajaxContent").children() ); // move elements back when you're finished
@@ -219,7 +219,7 @@
 	    tb_position();
 	    $("#TB_load").remove();
 	    $("#TB_window").css({display:"block"}); 
-	  }else if(url.indexOf('TB_iframe') != -1){
+	  }else if(settings.iframe) {
 	    tb_position();
 	    if($.browser.safari){//safari needs help because it will not fire iframe onload
 	      $("#TB_load").remove();
@@ -292,7 +292,8 @@
   };
   $.fn.thickbox.defaults = {
   modal: 0,
-  inlineId: '',
+  inlineId: null,
+  iframe: false,
   width: 600,
   height: 400,
   macFFBgHack: '../images/macFFBgHack.png',
